@@ -11,3 +11,5 @@ t/archive.tgz
 t/archive.zip
 t/pod.t
 t/simple.t
+LICENSE
+META.json

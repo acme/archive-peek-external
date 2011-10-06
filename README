@@ -1,22 +1,23 @@
 NAME
-    Archive::Peek - Peek into archives without extracting them
+    Archive::Peek::External - Peek into archives without extracting them
+    (using external tools)
 
 SYNOPSIS
-      use Archive::Peek;
-      my $peek = Archive::Peek->new( filename => 'archive.tgz' );
+      use Archive::Peek::External;
+      my $peek = Archive::Peek::External->new( filename => 'archive.tgz' );
       my @files = $peek->files();
       my $contents = $peek->file('README.txt')
 
 DESCRIPTION
     This module lets you peek into archives without extracting them. It
-    currently supports tar files and zip files. To support Bzip2- compressed
-    files, you should install IO::Uncompress::Bunzip2.
+    currently supports tar files and zip files using external tools such as
+    'tar' and 'unzip'.
 
 METHODS
   new
     The constructor takes the filename of the archive to peek into:
 
-      my $peek = Archive::Peek->new( filename => 'archive.tgz' );
+      my $peek = Archive::Peek::External->new( filename => 'archive.tgz' );
 
   files
     Returns the files in the archive:
@@ -32,7 +33,7 @@ AUTHOR
     Leon Brocard <acme@astray.com>
 
 COPYRIGHT
-    Copyright (C) 2008, Leon Brocard.
+    Copyright (C) 2011, Leon Brocard.
 
 LICENSE
     This module is free software; you can redistribute it or modify it under
