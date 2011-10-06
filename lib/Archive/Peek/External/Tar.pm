@@ -1,12 +1,14 @@
 package Archive::Peek::External::Tar;
 use Moose;
+use IPC::Run3;
 extends 'Archive::Peek::External';
 
 sub files {
     my $self = shift;
 
     my $filename = $self->filename;
-    my @files = sort grep { $_ !~ m{/$} } split "\n", qx(tar ft $filename);
+    run3 [ 'tar', 'ft', $filename ], \undef, \my $out, \undef;
+    my @files = sort grep { $_ !~ m{/$} } split $/, $out;
     return @files;
 }
 
@@ -14,7 +16,8 @@ sub file {
     my ( $self, $filename ) = @_;
 
     my $archive = $self->filename;
-    return qx(tar fxO $archive $filename);
+    run3 [ 'tar', 'fxO', $archive, $filename ], \undef, \my $out, \undef;
+    return $out;
 }
 
 1;

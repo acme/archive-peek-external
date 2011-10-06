@@ -22,6 +22,7 @@ my $build = Module::Build->new(
     module_name => 'Archive::Peek::External',
     requires    => {
         'File::Which'                => '0',
+        'IPC::Run3'                  => '0',
         'Moose'                      => '0',
         'MooseX::Types::Path::Class' => '0',
         'Test::More'                 => '0',
