@@ -1,13 +1,13 @@
+Build.PL
 CHANGES
-lib/Archive/Peek.pm
-lib/Archive/Peek/Tar.pm
-lib/Archive/Peek/Zip.pm
-Makefile.PL
+lib/Archive/Peek/External.pm
+lib/Archive/Peek/External/Tar.pm
+lib/Archive/Peek/External/Zip.pm
 MANIFEST			This list of files
+META.yml
 README
 t/archive.tar.bz2
 t/archive.tgz
 t/archive.zip
 t/pod.t
 t/simple.t
-META.yml                                 Module meta-data (added by MakeMaker)

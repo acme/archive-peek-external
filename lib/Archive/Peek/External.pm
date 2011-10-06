@@ -1,7 +1,7 @@
-package Archive::Peek;
+package Archive::Peek::External;
 use Moose;
-use Archive::Peek::Tar;
-use Archive::Peek::Zip;
+use Archive::Peek::External::Tar;
+use Archive::Peek::External::Zip;
 use MooseX::Types::Path::Class qw( File );
 our $VERSION = '0.35';
 
@@ -17,9 +17,9 @@ sub BUILD {
     my $filename = $self->filename;
     my $basename = $filename->basename;
     if ( $basename =~ /\.zip$/i ) {
-        bless $self, 'Archive::Peek::Zip';
+        bless $self, 'Archive::Peek::External::Zip';
     } elsif ( $basename =~ /(\.tar|\.tar\.gz|\.tgz|\.bz2|\.bzip2)$/i ) {
-        bless $self, 'Archive::Peek::Tar';
+        bless $self, 'Archive::Peek::External::Tar';
     } else {
         confess("Failed to open $filename");
     }
@@ -31,20 +31,20 @@ __END__
 
 =head1 NAME
 
-Archive::Peek - Peek into archives without extracting them
+Archive::Peek::External - Peek into archives without extracting them (using external tools)
 
 =head1 SYNOPSIS
 
-  use Archive::Peek;
-  my $peek = Archive::Peek->new( filename => 'archive.tgz' );
+  use Archive::Peek::External;
+  my $peek = Archive::Peek::External->new( filename => 'archive.tgz' );
   my @files = $peek->files();
   my $contents = $peek->file('README.txt')
   
 =head1 DESCRIPTION
 
 This module lets you peek into archives without extracting them.
-It currently supports tar files and zip files. To support Bzip2-
-compressed files, you should install IO::Uncompress::Bunzip2.
+It currently supports tar files and zip files using external tools
+such as 'tar' and 'unzip'.
 
 =head1 METHODS
 
@@ -52,7 +52,7 @@ compressed files, you should install IO::Uncompress::Bunzip2.
 
 The constructor takes the filename of the archive to peek into:
 
-  my $peek = Archive::Peek->new( filename => 'archive.tgz' );
+  my $peek = Archive::Peek::External->new( filename => 'archive.tgz' );
 
 =head2 files
 
@@ -72,7 +72,7 @@ Leon Brocard <acme@astray.com>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2008, Leon Brocard.
+Copyright (C) 2011, Leon Brocard.
 
 =head1 LICENSE
 
